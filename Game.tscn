@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2hnsvdwhj1sh"]
+
+[ext_resource type="Script" path="res://Game.gd" id="1_norg6"]
+[ext_resource type="PackedScene" uid="uid://dibr5uikqshtm" path="res://player.tscn" id="1_onb6o"]
+[ext_resource type="PackedScene" uid="uid://ra3x6xie3jak" path="res://ball.tscn" id="2_dp8ou"]
+[ext_resource type="Texture2D" uid="uid://bi0rlcoqakau0" path="res://brown.png" id="3_w1wg1"]
+[ext_resource type="Texture2D" uid="uid://cyahqe4rxbj8l" path="res://grey.png" id="4_mg1ov"]
+[ext_resource type="Texture2D" uid="uid://dqcd0b741ovnx" path="res://background2.jpg" id="7_1kqjk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14wpq"]
+size = Vector2(1162, 61)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_norg6")
+
+[node name="Top" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(571, -10.5)
+shape = SubResource("RectangleShape2D_14wpq")
+
+[node name="Bottom" type="Area2D" parent="."]
+position = Vector2(0, 629)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(573, 48)
+shape = SubResource("RectangleShape2D_14wpq")
+
+[node name="Left" type="Area2D" parent="."]
+position = Vector2(-52, -32)
+rotation = 1.57066
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(571, -10.5)
+shape = SubResource("RectangleShape2D_14wpq")
+
+[node name="Right" type="Area2D" parent="."]
+position = Vector2(1171, -32)
+rotation = 1.57066
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(571, -10.5)
+shape = SubResource("RectangleShape2D_14wpq")
+
+[node name="Player" parent="." instance=ExtResource("1_onb6o")]
+position = Vector2(128, 303)
+
+[node name="TextureRect" type="TextureRect" parent="Player"]
+offset_left = -78.0
+offset_top = -91.0
+offset_right = 43.0
+offset_bottom = 91.0
+texture = ExtResource("3_w1wg1")
+expand_mode = 1
+
+[node name="Player2" parent="." instance=ExtResource("1_onb6o")]
+position = Vector2(1017, 320)
+side = "p2"
+
+[node name="TextureRect" type="TextureRect" parent="Player2"]
+offset_left = -34.0
+offset_top = -85.0
+offset_right = 57.0
+offset_bottom = 62.0
+texture = ExtResource("4_mg1ov")
+expand_mode = 1
+
+[node name="Ball" parent="." instance=ExtResource("2_dp8ou")]
+position = Vector2(577, 317)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 383.0
+offset_top = 62.0
+offset_right = 463.0
+offset_bottom = 88.0
+text = "0"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 724.0
+offset_top = 65.0
+offset_right = 798.0
+offset_bottom = 97.0
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+offset_left = -38.0
+offset_top = -29.0
+offset_right = 1172.0
+offset_bottom = 679.0
+texture = ExtResource("7_1kqjk")
+
+[connection signal="body_entered" from="Top" to="." method="_on_top_body_entered"]
+[connection signal="body_entered" from="Bottom" to="." method="_on_bottom_body_entered"]
+[connection signal="body_entered" from="Left" to="." method="_on_left_body_entered"]
+[connection signal="body_entered" from="Right" to="." method="_on_right_body_entered"]

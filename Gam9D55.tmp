@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2hnsvdwhj1sh"]
+
+[ext_resource type="Script" path="res://Game.gd" id="1_norg6"]
+[ext_resource type="PackedScene" uid="uid://dibr5uikqshtm" path="res://player.tscn" id="1_onb6o"]
+[ext_resource type="PackedScene" uid="uid://ra3x6xie3jak" path="res://ball.tscn" id="2_dp8ou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14wpq"]
+size = Vector2(1162, 61)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_norg6")
+
+[node name="Top" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(571, -10.5)
+shape = SubResource("RectangleShape2D_14wpq")
+
+[node name="Bottom" type="Area2D" parent="."]
+position = Vector2(0, 629)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(573, 48)
+shape = SubResource("RectangleShape2D_14wpq")
+
+[node name="Left" type="Area2D" parent="."]
+position = Vector2(-52, -32)
+rotation = 1.57066
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(571, -10.5)
+shape = SubResource("RectangleShape2D_14wpq")
+
+[node name="Right" type="Area2D" parent="."]
+position = Vector2(1171, -32)
+rotation = 1.57066
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(571, -10.5)
+shape = SubResource("RectangleShape2D_14wpq")
+
+[node name="Player" parent="." instance=ExtResource("1_onb6o")]
+position = Vector2(126, 315)
+
+[node name="Player2" parent="." instance=ExtResource("1_onb6o")]
+position = Vector2(1016, 320)
+
+[node name="Ball" parent="." instance=ExtResource("2_dp8ou")]
